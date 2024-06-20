@@ -172,7 +172,7 @@ all_trips$ride_length <- as.numeric(as.character(all_trips$ride_length))
 is.numeric(all_trips$ride_length)
 # Remove "bad" data
 # The dataframe includes a few hundred entries when bikes were taken out of docks and checked for quality by Divvy or ride_length was negative
-# We will create a new version of the dataframe (clean) since data is being removed
+# I will create a new version of the dataframe (clean) since data is being removed
 # https://www.datasciencemadesimple.com/delete-or-drop-rows-in-r-with-conditions-2/
 all_trips_clean <- all_trips[!(all_trips$start_station_name == "HQ QR" | all_trips$ride_length<=0),] 
 #=====================================
@@ -228,8 +228,7 @@ all_trips_clean %>%
 #=================================================
 # STEP 5: EXPORT SUMMARY FILE FOR FURTHER ANALYSIS
 #=================================================
-# Create a csv file that we will visualize in Excel, Tableau, or my presentation software
-# N.B.: This file location is for a Mac. If you are working on a PC, change the file location accordingly (most likely "C:\Users\YOUR_USERNAME\Desktop\...") to export the data. You can read more here: https://datatofish.com/export-dataframe-to-csv-in-r/
+# Create a csv file that we will visualize in Tableau, or my presentation software
 counts <- aggregate(all_trips_clean$ride_length ~ all_trips_clean$member_casual + all_trips_clean$day_of_week, FUN = mean)
 write.csv(counts, file = 'avg_ride_length.csv')
 
